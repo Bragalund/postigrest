@@ -25,7 +25,7 @@ Second, run postgrest with config
 ```
 
 Go to index.html in your browser:  
-/home/YOURUSERNAME/path/to/code/postigrest/index.html
+/home/YOURUSERNAME/path/to/code/postigrest/[index.html](index.html)
 
 ## Configuration of database  
 
