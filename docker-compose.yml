@@ -1,6 +1,6 @@
 version: '3'
 services:
-  server:
+  postgrest_api:
     image: postgrest_local:latest
     ports:
       - "3000:3000"
@@ -26,12 +26,18 @@ services:
     expose:
       - "8080"
     environment:
-      API_URL: http://localhost:3000/
+      API_URL: http://localhost:3500/api
     depends_on:
-      - server
+      - postgrest_api
   frontend:
     image: nginx_local:latest
     ports:
       - "1234:80"
     depends_on:
-      - server
+      - hardened_api
+  hardened_api:
+    image: nginx_api_local:latest
+    ports: 
+      - "3500:80"
+    depends_on:
+      - postgrest_api
