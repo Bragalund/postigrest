@@ -6,7 +6,8 @@
   </head>
   <body>
     <button>
-      <a href="http://localhost:3500/todos">last</a>
+      <a hx-get="http://localhost:3500/api/todos" hx-target="#todos">last</a>
     </button>
+    <output id="todos"></output>
   </body>
 </html>
