@@ -1,20 +1,19 @@
 version: '3'
 services:
   server:
-    image: postgrest/postgrest
+    image: postgrest_local:latest
     ports:
       - "3000:3000"
     environment:
-      PGRST_DB_URI: postgres://web_anon:mysecretpassword@db:5433/app_db
       PGRST_OPENAPI_SERVER_PROXY_URI: http://127.0.0.1:3000
     depends_on:
       - db
   db:
-    build: .
+    image: postgres_local:latest
     ports:
       - "5433:5432"
     environment:
-      POSTGRES_DB: api
+      POSTGRES_DB: postgres
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: mysecretpassword
   # Uncomment this if you want to persist the data.

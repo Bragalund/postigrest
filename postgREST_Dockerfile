@@ -1,0 +1,3 @@
+FROM postgrest/postgrest
+ADD postgrest.conf /postgrest.conf
+CMD [ "/bin/postgrest", "postgrest.conf" ]
