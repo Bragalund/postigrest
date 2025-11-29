@@ -1,0 +1,27 @@
+name: Create diagram
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  visualize:
+    name: Generate repository diagram
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Visualize codebase
+        uses: githubocto/repo-visualizer@v0.9.0
+        with:
+          output_file: diagram.svg
+          root_path: .
+          excluded_paths: .git|.github/workflows
+          should_push: true
+          commit_message: "chore: update repository diagram"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
