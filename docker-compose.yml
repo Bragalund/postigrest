@@ -2,6 +2,8 @@ version: '3'
 services:
   postgrest_api:
     image: postgrest_local:latest
+    build:
+      context: ./docker/postgrest
     ports:
       - "3000:3000"
     environment:
@@ -10,6 +12,8 @@ services:
       - db
   db:
     image: postgres_local:latest
+    build:
+      context: ./docker/postgres
     ports:
       - "5433:5432"
     environment:
@@ -31,13 +35,17 @@ services:
       - postgrest_api
   frontend:
     image: nginx_local:latest
+    build:
+      context: ./docker/nginx-frontend
     ports:
       - "1234:80"
     depends_on:
       - hardened_api
   hardened_api:
     image: nginx_api_local:latest
-    ports: 
+    build:
+      context: ./docker/nginx-api
+    ports:
       - "3500:80"
     depends_on:
       - postgrest_api
