@@ -34,13 +34,15 @@ services:
     depends_on:
       - postgrest_api
   frontend:
-    image: nginx_local:latest
+    image: rust_frontend_local:latest
     build:
-      context: ./docker/nginx-frontend
+      context: ./docker/rust-frontend
     ports:
-      - "1234:80"
+      - "1234:3000"
+    environment:
+      POSTGREST_BASE_URL: http://postgrest_api:3000
     depends_on:
-      - hardened_api
+      - postgrest_api
   hardened_api:
     image: nginx_api_local:latest
     build:
