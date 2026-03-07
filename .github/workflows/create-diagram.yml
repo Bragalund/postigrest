@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Visualize codebase
-        uses: githubocto/repo-visualizer@v0.9.0
+        uses: githubocto/repo-visualizer@main
         with:
           output_file: diagram.svg
           root_path: .
