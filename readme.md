@@ -42,6 +42,15 @@ docker run --name posti_container -p 5433:5432 \
 ./postgrest tutorial.conf
 ```
 
+
+### Rust frontend endpoints
+
+The frontend now runs as a Rust webserver with HTMX rendering:
+
+- `GET /` renders the HTMX page
+- `GET /todos` renders the todo list HTML fragment used by HTMX
+- `GET /health` returns a health response
+
 ## Test it out in browser  
 
 [Frontend at localhost:1234](http://localhost:1234)
